@@ -51,6 +51,10 @@ def cmdLineParse(iargs=None):
     if not inps.output.lower() in ['count', 'kml', 'kmz', 'url', 'download']:
         raise Exception ('Incorrect output keyword. Choose "count", "kmz", or "download"')
 
+    for dt in [inps.start, inps.end]:
+        if dt is not None and len(dt) != 8:
+            raise Exception ('Incorrect date format, enter as YYYYMMDD')
+
     inps.output = 'Kml' if inps.output.lower() == 'kmz' else inps.output.title()
     return inps
 
